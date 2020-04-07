@@ -3,6 +3,7 @@
     <v-content>
       <navbar />
       <h1>verify</h1>
+      <h1>Flsjfjskdfsjkfks</h1>
     </v-content>
   </v-app>
 </template>
@@ -14,9 +15,9 @@ export default {
   name: "cheque_verify",
 
   components: {
-    navbar,
+    navbar
   },
 
-  data: () => ({}),
+  data: () => ({})
 };
 </script>
