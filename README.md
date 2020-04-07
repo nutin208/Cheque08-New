@@ -27,50 +27,161 @@
 
 
 ## Backend (Servlet)
-
- ### Show the list of the cheques that current user have sumbited
+ ### Show the cheques based on input id
 
 >  Get the Array of the chequed that current user have upload
-- **URL** : `/api/customers`
+- **URL** : `/api/cheque_data`
 - **Method** : `GET`
 - **Auth required** : YES
-- **Parameters** : None
+- **Parameters** : 
+     - id=<String> `Required`
 - **Body** : None
 - **Functions Involved** :  
-  - getTotalCustomers()
+  - getChequeDetail(int cheque_id)
+
 
 #### Success Response
 
 - **Status code** : `200`
 
   **Response body** :
-
-  ```json
-  {
-      "customers" : <Integer>
+   ```json
+ {  
+   
+      "id": <Integer>,
+      "type_cheque": <String>,
+      "amount": <Integer>,
+      "date_of_cheque": <String>,
+      "submitted_at": <String>,
+      "cheque_image": <String>,
+      "payee_account_id": <String>,
+      "payer_account_id": <String>,
+      "status": <String>,
+      "owner_id": <Integer>
+    
+    
+    
   }
   ```
+  ```
+
+ 
 
 #### Error Response
 
 - **Status code** : `401`
 
   **Response body** : None
+  
+- **Status Code**: `404`
+
+  **Response body** : 
+
+  ```json
+  {
+      "error": "this user have no cheque"
+  }
+  ```
+
 
 ---
 
- ### Show particular customer detail
 
-> Get the detail of each customer
 
-- **URL** : `/api/customer`
+ ### Show the list of the cheques that current user have sumbited
+
+>  Get the Array of the chequed that current user have upload
+- **URL** : `/api/cheque_list`
 - **Method** : `GET`
 - **Auth required** : YES
 - **Parameters** : 
-  - id=<String> `Required`
+     - id=<String> `Required`
 - **Body** : None
 - **Functions Involved** :  
-  - getCustomer()
+  - getTotalCheque(int customer_id)
+
+#### Success Response
+
+- **Status code** : `200`
+
+  **Response body** :
+   ```json
+ {  
+    cheques_current_user:[
+    {
+      "id": <Integer>,
+      "type_cheque": <String>,
+      "amount": <Integer>,
+      "date_of_cheque": <String>,
+      "submitted_at": <String>,
+      "cheque_image": <String>,
+      "payee_account_id": <String>,
+      "payer_account_id": <String>,
+      "status": <String>,
+      "owner_id": <Integer>
+    },
+     {
+      "id": <Integer>,
+      "type_cheque": <String>,
+      "amount": <Integer>,
+      "date_of_cheque": <String>,
+      "submitted_at": <String>,
+      "cheque_image": <String>,
+      "payee_account_id": <String>,
+      "payer_account_id": <String>,
+      "status": <String>,
+      "owner_id": <Integer>
+    },
+    {
+      "id": <Integer>,
+      "type_cheque": <String>,
+      "amount": <Integer>,
+      "date_of_cheque": <String>,
+      "submitted_at": <String>,
+      "cheque_image": <String>,
+      "payee_account_id": <String>,
+      "payer_account_id": <String>,
+      "status": <String>,
+      "owner_id": <Integer>
+    },.... so on
+   ]
+    
+  }
+  ```
+  ```
+
+ 
+
+#### Error Response
+
+- **Status code** : `401`
+
+  **Response body** : None
+  
+- **Status Code**: `404`
+
+  **Response body** : 
+
+  ```json
+  {
+      "error": "this user have no cheque"
+  }
+  ```
+
+
+---
+
+ ### Show all cheque that have in the database
+
+> Get all the array of cheque data in database
+
+- **URL** : `/api/cheque_stafflist`
+- **Method** : `GET`
+- **Auth required** : YES
+- **Parameters** : 
+- **Body** : None
+- **Functions Involved** :  
+  - getAllCheque()
 
 #### Success Response
 
@@ -78,16 +189,50 @@
 
   **Response body** :
 
-  ```json
-  {
+ **Response body** :
+   ```json
+ {  
+    cheques_all:[
+    {
       "id": <Integer>,
-      "citizen_id": <String>,
-      "name": <String>,
-      "lastname": <String>
-      "date_of_birth": <String>,
-      "email": <String>,
-      "address": <String>
+      "type_cheque": <String>,
+      "amount": <Integer>,
+      "date_of_cheque": <String>,
+      "submitted_at": <String>,
+      "cheque_image": <String>,
+      "payee_account_id": <String>,
+      "payer_account_id": <String>,
+      "status": <String>,
+      "owner_id": <Integer>
+    },
+     {
+      "id": <Integer>,
+      "type_cheque": <String>,
+      "amount": <Integer>,
+      "date_of_cheque": <String>,
+      "submitted_at": <String>,
+      "cheque_image": <String>,
+      "payee_account_id": <String>,
+      "payer_account_id": <String>,
+      "status": <String>,
+      "owner_id": <Integer>
+    },
+    {
+      "id": <Integer>,
+      "type_cheque": <String>,
+      "amount": <Integer>,
+      "date_of_cheque": <String>,
+      "submitted_at": <String>,
+      "cheque_image": <String>,
+      "payee_account_id": <String>,
+      "payer_account_id": <String>,
+      "status": <String>,
+      "owner_id": <Integer>
+    },.... so on
+   ]
+    
   }
+  ```
   ```
 
 #### Error Response
@@ -102,43 +247,98 @@
 
   ```json
   {
-      "error": "Customer is not found"
+      "error": "cheque in database not found "
   }
   ```
 
 ---
 
- ### Create new customer
+ ### Create new cheque
 
-> create new customer 
+> create new cheque 
 
-- **URL** : `/api/customer`
+- **URL** : `/api/cheque_submit`
 
 - **Method** : `POST`
 
 - **Auth required** : YES
 
-- **Parameters** : None
+- **Parameters** : 
+      "type_cheque": <String>,
+      "amount": <Integer>,
+      "cheque_image": <String>,
+      "payee_account_id": <String>,
+      "payer_account_id": <String>,
+  
+- **Body** : 
+
+  ```json
+  {
+      "id": <Integer>,
+      "type_cheque": <String>,
+      "amount": <Integer>,
+      "date_of_cheque": <String>,
+      "submitted_at": <String>,
+      "cheque_image": <String>,
+      "payee_account_id": <String>,
+      "payer_account_id": <String>,
+      "status": <String>,
+      "owner_id": <Integer>
+  }
+  ```
+
+- **Functions Involved** :  
+  - addCheque()
+
+#### Success Response
+
+- **Status code** : `200`
+
+  **Response body** : None
+
+#### Error Response
+
+- **Status code** : `400`
+
+  **Response body** : None
+
+- **Status Code**: `401`
+
+  **Response body** : None
+
+---
+
+---
+
+ ### Approve/disapprove the cheque 
+>  set the cheque status to approve or disapprove
+
+- **URL** : `/api/cheque_approval`
+
+- **Method** : `POST`
+
+- **Auth required** : YES
+
+- **Parameters** : 
+    - id(cheque)=<String> `Required`
+    - status=<String> `Required`
+
 
 - **Body** : 
 
   ```json
   {
-      "citizen_id": <String>,
-      "username": <String>,
-      "password": <String>,
-      "name": <String>,
-      "lastname": <String>,
-      "date_of_birth": <String>,
-      "email": <String>,
-      "tel": <String>,
-      "occupation": <String>,
-      "address": <String>
+      "id": <Integer>,
+      "type_cheque": <String>,
+      "payee_account_id": <String>,
+      "payer_account_id": <String>,
+      "status": <String>,
+      "owner_id": <Integer>
   }
   ```
 
 - **Functions Involved** :  
-  - createCustomer()
+  - setStatus(int cheque_id,String status)
 
 #### Success Response
 
@@ -160,7 +360,14 @@
 
 
 
+
+
 ##  Functions (Model)
+
+### getAllCheque()
+
+- **Description** : `return the arrays  of all the cheque in database`
+- **Package** : `model.QueryModel`
 
 ### getTotalCheque(int customer_id)
 
