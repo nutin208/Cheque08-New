@@ -105,9 +105,11 @@
 - **Status code** : `200`
 
   **Response body** :
+
+ **Response body** :
    ```json
  {  
-    cheques_currentuser:[
+    cheques_user:[
     {
       "id": <Integer>,
       "type_cheque": <String>,
@@ -150,25 +152,21 @@
   ```
   ```
 
-
- 
-
 #### Error Response
 
 - **Status code** : `401`
 
   **Response body** : None
-  
+
 - **Status Code**: `404`
 
   **Response body** : 
 
   ```json
   {
-      "error": "this user have no cheque"
+      "error": "this user have no cheque "
   }
   ```
-
 
 ---
 
@@ -265,11 +263,13 @@
 - **Auth required** : YES
 
 - **Parameters** : 
-      "type_cheque": <String>,
-      "amount": <Integer>,
-      "cheque_image": <String>,
-      "payee_account_id": <String>,
-      "payer_account_id": <String>,
+
+
+      -type_cheque= <String> 
+      -amount= <Integer> 
+      -cheque_image= <String> 
+      -payee_account_id= <String> 
+      -payer_account_id= <String>
   
 - **Body** : 
 
