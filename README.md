@@ -107,7 +107,7 @@
   **Response body** :
    ```json
  {  
-    cheques_current_user:[
+    cheques_currentuser:[
     {
       "id": <Integer>,
       "type_cheque": <String>,
@@ -147,6 +147,7 @@
    ]
     
   }
+  ```
   ```
 
 
