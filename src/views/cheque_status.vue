@@ -14,9 +14,8 @@
           Your cheque is disqualified.
         </div>
         <div v-else>
-          <h6>Staff will check your cheuqe</h6><br>
-          <img alt="hourglass" src="../assets/hourglass.svg" height="100px" width="100px"/><br>
-          Pending ... please waiting.
+          <img alt="hourglass" src="../assets/hourglass.svg" /><br>
+          Pending... please wait. 
         </div>
       </header>
     </v-content>
@@ -27,7 +26,12 @@
     font-size: 2.5em;
     font-family: "Nunito", sans-serif;
     text-align: center;
-    margin: 50px auto 25px auto;
+  }
+  img {
+    height: 150px;
+    width: 150px;
+    left: 380px;
+    bottom: 300px;
   }
 </style>
 <script>
