@@ -119,7 +119,7 @@ header{
 import axios from 'axios'
 import navbar from "@/components/Nav";
 import { validationMixin } from 'vuelidate'                           //need to install vuelidate
-import { required, maxLength } from 'vuelidate/lib/validators'   //if you run system will show in cmd what command you have to prompt
+import { required, maxLength ,minLength} from 'vuelidate/lib/validators'   //if you run system will show in cmd what command you have to prompt
 
 export default {
   name: "cheque_approve",
@@ -129,8 +129,8 @@ export default {
      
       date:{required},
       amount:{required},
-      payeeid:{required},
-      payerid:{required},
+      payeeid:{required,maxLength:maxLength(10),minLength:minLength(10)},
+      payerid:{required,maxLength:maxLength(10),minLength:minLength(10)},
       select: { required },
       checkbox: {
         checked (val) {
@@ -201,12 +201,16 @@ export default {
       payeeidErrors(){
         const errors=[]
         if(!this.$v.payeeid.$dirty) return errors
+        !this.$v.payeeid.maxLength && errors.push('Payee ID is be 10 number')
+        !this.$v.payeeid.minLength && errors.push('Payee ID is be 10 number')
         !this.$v.payeeid.required && errors.push('Payee ID is required.')
         return errors
       },
       payeridErrors(){
         const errors=[]
         if(!this.$v.payerid.$dirty) return errors
+         !this.$v.payerid.maxLength && errors.push('Payer ID is be 10 number')
+        !this.$v.payerid.minLength && errors.push('Payer ID is be 10 number')
         !this.$v.payerid.required && errors.push('Payer ID is required.')
         return errors
       },
