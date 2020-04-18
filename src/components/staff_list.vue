@@ -1,127 +1,121 @@
 <template>
-  <div>
-    <div class="text-center mb-12"></div>
-    <div id="say">Waiting For Approval</div>
-    <table id="firstTable">
-      <thead>
-        <tr>
-          <th>Cheque-ID</th>
-          <th>User</th>
-          <th>Type</th>
-          <th>Date</th>
-          <th>Verify</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="row in rows" :key="row.id">
-          <td v-for="col in columns" :key="col.id">
-            <a v-if="col === 'verify'" :href="row[col]">Check</a>
-            <div v-else>{{ row[col] }}</div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div id="app">
+    <v-app>
+      <v-carousel style="margin-bottom: 100px;" height="225" hide-delimiters :show-arrows="false">
+        <v-carousel-item>
+          <v-sheet color="primary" height="100%">
+            <div class="title">
+              <h1
+                style=" padding-top: 100px; font-family: 'Nunito', sans-serif;
+               font-size: 4em;
+              font-weight: bold;"
+              >Cheque Management</h1>
+            </div>
+          </v-sheet>
+        </v-carousel-item>
+      </v-carousel>
+      <v-card class="card_table">
+        <v-card-title>
+          Wating For Approval
+          <v-spacer></v-spacer>
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
+        </v-card-title>
+        <v-data-table :headers="headers" :items="info.data" :search="search">
+          <template v-slot:item.status="{ item }">
+            <v-btn rounded color="primary" :to="{ name: 'cheque_verify', params: { id: item.id } }">
+              <v-icon dark>mdi-pencil</v-icon>Check
+            </v-btn>
+          </template>
+        </v-data-table>
+      </v-card>
+    </v-app>
   </div>
 </template>
-<style scoped>
-#say {
-  font-family: "Nunito", sans-serif;
-  font-size: 3rem;
-
-  margin-left: 10%;
+<style >
+.title {
+  text-align: center;
 }
-.v-btn {
-  font-family: "Nunito", sans-serif;
+.card_table {
+  max-width: 95%;
+  margin: 0 2.5%;
+  padding-bottom: 5%;
 }
-.v-btn.v-size--x-large {
+.v-data-table {
+  font-family: "Nunito", sans-serif;
+  border-collapse: collapse;
+  border: 5px solid #1976d2;
+}
+/* .v-text-field input {
+  
+} */
+.v-card__title {
   font-size: 2rem;
 }
-table {
-  font-family: "Nunito", sans-serif;
-  font-size: 2em;
-  width: 80%;
-  border-collapse: collapse;
-  border: 3px solid #1976d2;
-  margin: 0 auto 5% auto;
-}
 
-table th {
+.v-data-table th {
+  font-size: 1.5rem;
   text-transform: uppercase;
-  text-align: center;
+  text-align: left;
   background: #1976d2;
   color: #fff;
   padding: 8px;
-  min-width: 20px;
+  min-width: 30px;
 }
-
-table td {
-  text-align: center;
+.v-data-table td {
+  font-size: 1.25rem;
+  text-align: left;
   padding: 8px;
   border-right: 2px solid #90caf9;
 }
-table td:last-child {
+.v-data-table td:last-child {
   border-right: none;
 }
-table tbody tr:nth-child(2n) td {
+.v-data-table tbody tr:nth-child(2n) td {
   background: #e3f2fd;
+}
+
+.theme--light.v-data-table thead tr th {
+  color: #fff;
 }
 </style>
 <script>
+import axios from "axios";
 export default {
-  data: () => ({
-    drawer: false,
-    rows: [
-      {
-        id: 1,
-        user: "JoJo",
-        type: "Bearer",
-        date: "32-01-14",
-        verify: "adsad",
-      },
-      {
-        id: 2,
-        user: "DoJo",
-        type: "Order",
-        date: "32-01-14",
-        verify: "adsad",
-      },
-      {
-        id: 3,
-        user: "JoDo",
-        type: "Order",
-        date: "32-01-14",
-        verify: "adsad",
-      },
-      {
-        id: 4,
-        user: "DoDo",
-        type: "Order",
-        date: "32-01-14",
-        verify: "adsad",
-      },
-      {
-        id: 5,
-        user: "DoDo",
-        type: "Order",
-        date: "32-01-14",
-        verify: "adsad",
-      },
-      {
-        id: 6,
-        user: "DoDo",
-        type: "Order",
-        date: "32-01-14",
-        verify: "adsad",
-      },
-    ],
-  }),
-  computed: {
-    columns: function columns() {
-      // if (this.rows.length == 0) {
-      //   return [];
-      // }
-      return Object.keys(this.rows[0]);
-    },
+  data() {
+    return {
+      info: null,
+      search: "",
+      headers: [
+        {
+          text: "Cheque-ID",
+          align: "center",
+          value: "id",
+          width: "170px"
+        },
+        { text: "User ID", value: "owner_id", align: "center", width: "170px" },
+        { text: "Type", align: "center", value: "type_cheque" },
+        { text: "Date", align: "center", value: "date_of_cheque" },
+        { text: "Amount", align: "end", value: "amount", width: "250px" },
+        {
+          text: "Submit At",
+          align: "center",
+          width: "350px",
+          value: "submitted_at"
+        },
+        { text: "Process", width: "220px", align: "center", value: "status" }
+      ]
+    };
   },
+  mounted() {
+    axios
+      .get("http://localhost:8088/FinalTESTREALLY/cheque_stafflist")
+      .then(response => (this.info = response));
+  }
 };
 </script>
