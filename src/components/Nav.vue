@@ -46,7 +46,9 @@ export default {
         { text: "Home", link: "/" },
         { text: "My Account", link: "/View" },
         { text: "Open Account", link: "/Open" },
-        { text: "Close Account", link: "/Close" }
+        { text: "Close Account", link: "/Close" },
+        { text: "Cheque User", link: "/cheque_usermenu" },
+        { text: "Cheque Staff", link: "/cheque_staffmenu" }
       ]
     };
   }

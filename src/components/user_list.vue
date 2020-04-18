@@ -21,6 +21,7 @@
                     dark
                     color="white"
                     v-on="on"
+                    to="/cheque_submit"
                   >
                     <v-icon x-large color="primary" dark>mdi-plus</v-icon>
                   </v-btn>
@@ -55,7 +56,11 @@
                 hide-details
               ></v-text-field>
             </v-card-title>
+
             <v-data-table :headers="headers" :items="info.data" :search="search">
+              <template v-slot:item.amount="{ item }">
+                <div>{{item.amount}} Baht</div>
+              </template>
               <template v-slot:item.status="{ item }">
                 <v-chip
                   style="font-size:0.75em"
@@ -107,7 +112,7 @@ export default {
         { text: "Type", align: "center", value: "type_cheque" },
         { text: "Date", align: "center", value: "date_of_cheque" },
         {
-          text: " Amount",
+          text: " Amount (THB)",
           align: "end",
           value: "amount",
           width: "250px"

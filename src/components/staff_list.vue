@@ -27,6 +27,9 @@
           ></v-text-field>
         </v-card-title>
         <v-data-table :headers="headers" :items="info.data" :search="search">
+          <template v-slot:item.amount="{ item }">
+            <div>{{item.amount}} Baht</div>
+          </template>
           <template v-slot:item.status="{ item }">
             <v-btn rounded color="primary" :to="{ name: 'cheque_verify', params: { id: item.id } }">
               <v-icon dark>mdi-pencil</v-icon>Check
@@ -101,7 +104,7 @@ export default {
         { text: "User ID", value: "owner_id", align: "center", width: "170px" },
         { text: "Type", align: "center", value: "type_cheque" },
         { text: "Date", align: "center", value: "date_of_cheque" },
-        { text: "Amount", align: "end", value: "amount", width: "250px" },
+        { text: "Amount (THB)", align: "end", value: "amount", width: "250px" },
         {
           text: "Submit At",
           align: "center",
@@ -116,6 +119,7 @@ export default {
     axios
       .get("http://localhost:8088/FinalTESTREALLY/cheque_stafflist")
       .then(response => (this.info = response));
-  }
+  },
+  methods: {}
 };
 </script>

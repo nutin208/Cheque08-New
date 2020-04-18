@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import cheque_staffmenu from "../views/cheque_staffmenu.vue";
 import cheque_usermenu from "../views/cheque_usermenu.vue";
-import cheque_approve from "../views/cheque_approve.vue";
+import cheque_submit from "../views/cheque_submit.vue";
 
 import cheque_verify from "../views/cheque_verify.vue";
 
@@ -25,8 +25,8 @@ const routes = [
     component: cheque_usermenu,
   },
   {
-    path: "/cheque_approve",
-    component: cheque_approve,
+    path: "/cheque_submit",
+    component: cheque_submit,
   },
   {
     path: "/cheque_verify/:id",

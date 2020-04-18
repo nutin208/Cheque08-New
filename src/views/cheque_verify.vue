@@ -80,7 +80,7 @@
                   </v-radio-group>
                 </td>
               </tr>
-              <tr v-if="info.data.payee_name!=null">
+              <tr v-if="info.data.payee_name.length!=0">
                 <td>Payee Name</td>
                 <td>{{info.data.payee_name}}</td>
                 <td>
@@ -355,7 +355,7 @@ export default {
       });
     },
     sendStatus() {
-      if (this.info.data.payee_name == null) {
+      if (this.info.data.payee_name.length == 0) {
         this.check[4] = "-";
       }
       if (this.check.includes(0)) {
