@@ -75,13 +75,7 @@
   
 - **Status Code**: `404`
 
-  **Response body** : 
-
-  ```json
-  {
-      "error": "this user have no cheque"
-  }
-  ```
+  **Response body** : None
 
 
 ---
@@ -160,13 +154,7 @@
 
 - **Status Code**: `404`
 
-  **Response body** : 
-
-  ```json
-  {
-      "error": "this user have no cheque "
-  }
-  ```
+  **Response body** : None
 
 ---
 
@@ -186,7 +174,6 @@
 
 - **Status code** : `200`
 
-  **Response body** :
 
  **Response body** :
    ```json
