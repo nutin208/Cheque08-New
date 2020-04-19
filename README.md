@@ -6,24 +6,19 @@
 
 `User Side`
 - `/cheque_usermenu`
-  > Listing all the submited cheque of current user including the button to check status for each cheque 
-  > Also have a button to sumbit a cheque
-  
-- `/cheque_status`
-  > the page use to show current check status : pending , success, fail .
+  > Have a button for a user to submit the cheque
+  > Have a bouttn for user to Listing all the submited cheque(current user) including the detail and status.
  
-
 - `/cheque_submit` 
-  > page for user to sumbit the cheque , by inputing cheque info and  cheque img
+  > Page for user to sumbit the cheque , by inputing cheque info and  cheque img
 
 
 `Staff Side`
 - `/cheque_staffmenu` 
   > List all the pending cheque that await for a staff to approve, including the button to approve status for each cheque 
 - `/cheque_verify` 
-  > page for Staff to verify the cheque , by comparing the cheque info that user input in  and the cheque info on the cheque img that     user give 
-- `/cheque_approve` 
-  > page for staff to aprrove the cheque by compare the signature on database and signature on the cheque img .
+  > page for Staff to verify the cheque , by comparing the cheque info that user input in  and the cheque info on the cheque img that     user give and approve the cheque
+
 
 
 ## Backend (Servlet)
