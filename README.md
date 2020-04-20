@@ -263,8 +263,7 @@
   
 - **Body** : 
 
-  ```json
-  {
+
   --------SEND THIS VIA FormData-------
       fd.append("type", this.type);
       fd.append("amount", this.amount);
@@ -272,7 +271,7 @@
       fd.append("payeeid", this.select);
       fd.append("payerid", this.payerid);
       fd.append("image", this.selectedFile, this.selectedFile.name);
-  }
+  
   ```
 
 - **Functions Involved** :  
@@ -447,8 +446,7 @@
 - **Description** : `Using customer_id to search and return the Arrays of total cheques that customer submit`
 - **Package** : `model.ChequeQueryModel`
 
-### addCheque(String type_cheque, String amount, String date_of_cheque, String submitted_at,
-                          String cheque_image, String payee_account_id, String payer_account_id, String owner_id)
+### addCheque(String type_cheque, String amount, String date_of_cheque, String submitted_at,String cheque_image, String payee_account_id, String payer_account_id, String owner_id)
 
 - **Description** : `Create new cheque by using input information`
 - **Package** : `model.ChequeQueryModel`
