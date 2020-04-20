@@ -105,8 +105,8 @@
 
  **Response body** :
     ```json
-
- {  
+```json
+    {  
     cheques_user:[
     {
       "id": <Integer>,
@@ -147,7 +147,8 @@
    ]
     
   }
-```
+  ```
+  ```
   ```
 
 #### Error Response
