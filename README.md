@@ -104,7 +104,7 @@
   **Response body** :
 
  **Response body** :
-   ```json
+
  {  
     cheques_user:[
     {
@@ -146,7 +146,7 @@
    ]
     
   }
-  ```
+
   ```
 
 #### Error Response
@@ -180,7 +180,7 @@
 
 
  **Response body** :
-   ```json
+
  {  
     cheques_all:[
     {
@@ -222,7 +222,7 @@
    ]
     
   }
-  ```
+
   ```
 
 #### Error Response
@@ -258,8 +258,8 @@
       -payeeid= <String> 
       -payerid= <String>
   ------- Use Formdata -----------
-      -img file
-    Sending the cheque img file to backend
+          -img file
+     Sending the cheque img file to backend
   
 - **Body** : 
 
@@ -313,13 +313,10 @@
 - **Status code** : `200`
 
   **Response body** :
+    acID=<String>
    ```json
- {      acID=<String>
-       
- 
-      [ "accID1", "accID2", "accID3",... so on ]
- 
-    
+ {      
+     [ "accID1", "accID2", "accID3",... so on ] 
   }
   #### Error Response
 
@@ -358,9 +355,6 @@
 
 - **Body** : 
 
-  ```json
-  {
-  
         ---------------- USE FORM DATA TO SEND ----------------
         fd.append("cheque_id", this.id);
         fd.append("check", this.check);
@@ -368,7 +362,6 @@
         fd.append("payer_account_id", this.info.data.payer_account_id);
         fd.append("payee_account_id", this.info.data.payee_account_id);
         fd.append("amount", this.info.data.amount);
-  }
   ```
 
 - **Functions Involved** :  
