@@ -104,6 +104,7 @@
   **Response body** :
 
  **Response body** :
+    ```json
 
  {  
     cheques_user:[
@@ -146,7 +147,7 @@
    ]
     
   }
-
+```
   ```
 
 #### Error Response
@@ -180,7 +181,7 @@
 
 
  **Response body** :
-
+   ```json
  {  
     cheques_all:[
     {
@@ -222,7 +223,7 @@
    ]
     
   }
-
+```
   ```
 
 #### Error Response
